@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lear1</title>
+  <link rel="stylesheet" href="./css/lear1.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="lear1" v-cloak>
+    {{msg}}<br />
+    <span v-if="seen" :title="msg">{{msg1}}</span>
+    <ol>
+      <li v-for="(item, key) in todos" :key="key">{{item.text}}</li>
+    </ol>
+    <button @click="reverseMsg">Reverse Message</button><br />
+    <input type="text" v-model="msg" /><br />
+    <input type="text" v-model="msg1" /><br />
+    <ol>
+      <todo-item v-for="item in todoItem" :key="item.id" :todo="item"></todo-item>
+    </ol>
+  </div>
+</body>
+<script src="./js/lear1.js"></script>
+</html>

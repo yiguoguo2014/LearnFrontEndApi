@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+  </div>
+</body>
+<script>
+  Array.prototype.un = function () {
+    this.sort();
+    var re = [this[0]];
+    for (var i = 1; i < this.length; i++) {
+      if (this[i] !== re[re.length - 1]) {
+        re.push(this[i]);
+      }
+    }
+    return re;
+  }
+  var arr = [112, 112, 34, '你好', 112, 112, 34, '你好', 'str', 'str1']
+  console.log(arr.un())
+</script>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" media="screen" href="./css/lear1.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>is</title>
+</head>
+<body>
+  <div id="learIs">
+    <form @submit.prevent="addNewTodo">
+      <label for="new-todo">Add a todo</label>
+      <input v-model="newTodoText" id="new-todo" placeholder="E.g. Feed the cat">
+      <button>Add</button>
+    </form>
+    <ul>
+      <li is="todo-item" v-for="(todo, index) in todos" :key="todo.id" :title="todo.title" @remove="todos.splice(index, 1)"></li>
+    </ul>
+  </div>
+  <script src="./js/lear4foris.js"></script>
+</body>
+</html>

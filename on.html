@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+  </div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+let vm = new Vue({
+  el: '#app',
+  data: {},
+  methods: {
+    test (msg) {
+      console.log(msg)
+    }
+  },
+  template: '<button @click="test">按钮</button>'
+})
+vm.$on('test', function (msg) {
+  console.log(msg)
+})
+vm.$emit('test', 'hi')
+</script>
+</html>

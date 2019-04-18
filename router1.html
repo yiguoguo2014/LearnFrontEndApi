@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<body>
+  <div id="app">
+    <p>{{msg}}</p>
+    <p>
+      <span :title="msg1">{{msg1}}</span>
+    </p>
+    <p v-if="seen">显示</p>
+    <ul>
+      <li v-for="(todo, index) of todos" :key="index">
+        {{todo.text}}
+      </li>
+    </ul>
+    <!-- <div>
+      <router-link to="/foo/111">Go to Foo</router-link>
+    </div>
+    <router-view></router-view> -->
+  </div>
+</body>
+<script>
+  // const Foo = { template: `<div>{{$route.params.id}}</div>` }
+  // const routes = [
+  //   { path: '/foo/:id', components: { Foo } }
+  // ]
+  // const router = new VueRouter({
+  //   routes
+  // })
+  // const app = new Vue({
+  //   router
+  // }).$mount('#app')
+  let app = new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello vue',
+      msg1: `页面加载于${new Date().toLocaleString()}`,
+      seen: true,
+      todos: [
+        { text: '学习 JavaScript' },
+        { text: '学习 Vue' },
+        { text: '涨工资啊' }
+      ]
+    }
+  })
+</script>
+</html>

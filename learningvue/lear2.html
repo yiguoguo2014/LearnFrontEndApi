@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lear2</title>
+  <link rel="stylesheet" href="./css/lear1.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="lear2" v-cloak>
+    <p>{{msg}}</p>
+    <p v-once>{{msg}}</p>
+    <button @click="msg = 'bar2222'">change</button>
+    <p>{{msg}}：<span v-html="rawHtml"></span></p>
+    <a v-bind:[attributename]="url" target="_blank">click</a><br />
+    <input @[someattr]="handleCustom" type="text" v-model="msg"></input>
+  </div>
+  <script src="./js/lear2.js"></script>
+</body>
+</html>
