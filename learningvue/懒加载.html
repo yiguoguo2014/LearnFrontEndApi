@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    img {
+      display: block;
+      max-height: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>懒加载页面</h1>
+    <img src="https://tse3-mm.cn.bing.net/th?id=OIP.F7l1DgbHh4FrhM_ORLv-5gHaEs&w=300&h=189&c=7&o=5&pid=1.7" data-src='https://tse3-mm.cn.bing.net/th?id=OIP.F7l1DgbHh4FrhM_ORLv-5gHaEs&w=300&h=189&c=7&o=5&pid=1.7' alt="https://tse3-mm.cn.bing.net/th?id=OIP.F7l1DgbHh4FrhM_ORLv-5gHaEs&w=300&h=189&c=7&o=5&pid=1.7">
+    <img src="https://tse3-mm.cn.bing.net/th?id=OIP.F7l1DgbHh4FrhM_ORLv-5gHaEs&w=300&h=189&c=7&o=5&pid=1.7" data-src='https://tse3-mm.cn.bing.net/th?id=OIP.xEWZPYbDrfPiyN0DIxF_ygHaEc&w=300&h=180&c=7&o=5&pid=1.7' alt="">
+    <img src="https://tse3-mm.cn.bing.net/th?id=OIP.F7l1DgbHh4FrhM_ORLv-5gHaEs&w=300&h=189&c=7&o=5&pid=1.7" data-src='https://tse2-mm.cn.bing.net/th?id=OIP.GSL2AsiUAbJakzdirIq3zQHaEo&w=300&h=187&c=7&o=5&pid=1.7' alt="">
+    <img src="https://tse3-mm.cn.bing.net/th?id=OIP.F7l1DgbHh4FrhM_ORLv-5gHaEs&w=300&h=189&c=7&o=5&pid=1.7" data-src='https://tse3-mm.cn.bing.net/th?id=OIP.cFbgVFqAqKK8YXzkFQCuXgHaDt&w=300&h=150&c=7&o=5&pid=1.7' alt="">
+    <img src="https://tse3-mm.cn.bing.net/th?id=OIP.F7l1DgbHh4FrhM_ORLv-5gHaEs&w=300&h=189&c=7&o=5&pid=1.7" data-src='https://tse2-mm.cn.bing.net/th?id=OIP.mP1xAurXcDSvCTH52Eo4xgAAAA&w=196&h=180&c=7&o=5&pid=1.7' alt="">
+    <img src="https://tse3-mm.cn.bing.net/th?id=OIP.F7l1DgbHh4FrhM_ORLv-5gHaEs&w=300&h=189&c=7&o=5&pid=1.7" data-src='https://tse2-mm.cn.bing.net/th?id=OIP.rBD7tMePLoNn3E9lzgUIoAHaKe&w=123&h=160&c=7&o=5&pid=1.7' alt="">
+    <img src="https://tse3-mm.cn.bing.net/th?id=OIP.F7l1DgbHh4FrhM_ORLv-5gHaEs&w=300&h=189&c=7&o=5&pid=1.7" data-src='https://tse4-mm.cn.bing.net/th?id=OIP.RMMhxoQMiP3HAfnvDi5xdQAAAA&w=154&h=168&c=7&o=5&pid=1.7' alt="">
+    <img src="https://tse3-mm.cn.bing.net/th?id=OIP.F7l1DgbHh4FrhM_ORLv-5gHaEs&w=300&h=189&c=7&o=5&pid=1.7" data-src='https://tse1-mm.cn.bing.net/th?id=OIP.LjjRVqKn-oL3sXKOo8myjwHaIN&w=154&h=163&c=7&o=5&pid=1.7' alt="">
+    <img src="https://tse3-mm.cn.bing.net/th?id=OIP.F7l1DgbHh4FrhM_ORLv-5gHaEs&w=300&h=189&c=7&o=5&pid=1.7" data-src='https://tse1-mm.cn.bing.net/th?id=OIP.HCIlD4rShcypSvtMjvhFeAHaMM&w=115&h=163&c=7&o=5&pid=1.7' alt="">
+  </div>
+</body>
+
+</html>
+<script>
+  window.onload = function () {
+    var scrollTop = window.scrollY;
+    var imgs = Array.from(document.querySelectorAll('img'));
+    lazyLoad();
+    // 采用了节流函数
+    window.addEventListener('scroll', throttle(lazyLoad, 500, 1000));
+    function throttle(fun, delay, time) {
+      var timeout,
+        startTime = new Date();
+      return function () {
+        var context = this,
+          args = arguments,
+          curTime = new Date();
+        clearTimeout(timeout);
+        // 如果达到了规定的触发时间间隔，触发 handler
+        console.log(curTime - startTime)
+        if (curTime - startTime >= time) {
+          fun();
+          startTime = curTime;
+          // 没达到触发间隔，重新设定定时器
+        } else {
+          timeout = setTimeout(fun, delay);
+        }
+      };
+    };
+    // 实际想绑定在 scroll 事件上的 handler
+    // 需要访问到imgs ,  scroll
+    function lazyLoad() {
+      scrollTop = window.scrollY;
+      imgs.forEach((item, index) => {
+        if (scrollTop === 0 && item.dataset.src !== '' && item.offsetTop < window.innerHeight + scrollTop) {
+          // alert()
+          item.setAttribute('src', item.dataset.src)
+          item.setAttribute('data-src', '')
+        } else if (item.dataset.src !== '' && item.offsetTop < window.innerHeight + scrollTop && item.offsetTop > scrollTop) {
+          item.setAttribute('src', item.dataset.src)
+          item.setAttribute('data-src', '')
+        }
+      })
+    }
+  }
+</script>
